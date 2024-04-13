@@ -20,8 +20,7 @@ class ProductManager {
             fs.writeFileSync(this.path, JSON.stringify(this.products, null, 2), 'utf8');
         } catch (error) {
             console.error("Error al guardar los productos:", error);
-        }
-       
+        }  
     }
 
     getProducts() {
@@ -66,28 +65,31 @@ class ProductManager {
     }
 
     updateProduct(product_id, updatedProduct) {
-        const index = this.products.findIndex(product => product.id === product_id);
-        if (index !== -1) {
-            this.products[index] = { ...this.products[index], ...updatedProduct };
+        const productToUpdate = this.products.find(product => product.id === product_id);
+
+        if (productToUpdate) {
+            this.products = this.products.filter(product => product.id !== product_id);
+            this.products.push({ ...productToUpdate, ...updatedProduct });
 
             this.saveProducts();
-            
-            console.log(`El Producto con el ID ${product_id} fue actualizado exitosamente!`);
+
+            console.log(`El Producto con el ID ${product_id}, fue actualizado correctamente`);
         } else {
-            console.log(`No se encontró ningún producto con el ID ${product_id}.`);
+            console.log(`No se ha encontrado ningún Producto con el ID: ${product_id}`);
         }
     }
 
     deleteProduct(product_id) {
-        const productIndex = this.products.findIndex(product => product.id === product_id);
+        const productToDelete = this.products.find(product => product.id === product_id);
 
-        if (productIndex !== -1) {
-            this.products.splice(productIndex, 1);
+        if (productToDelete) {
+            this.products = this.products.filter(product => product.id !== product_id);
+
             this.saveProducts();
-            
-            console.log(`El Producto con ID ${product_id} fue eliminado exitosamente.`);
+
+            console.log(`El Producto con el ID ${product_id}, fue eliminado exitosamente!`);
         } else {
-            console.log(`No se encontró ningún producto con el ID ${product_id}.`);
+            console.log(`No se encontró ningún producto con el ID ${product_id}`);
         }
     }
 }
@@ -101,7 +103,7 @@ console.log(productList);
 productManager.addProduct(
     "producto prueba",
     "esto es un producto prueba",
-    500,
+    100,
     "sin imagen1",
     "abc123",
     25
@@ -110,7 +112,7 @@ productManager.addProduct(
 productManager.addProduct(
     "producto prueba 2",
     "esto es un producto prueba",
-    500,
+    200,
     "sin imagen1",
     "dfg654",
     25
@@ -119,10 +121,28 @@ productManager.addProduct(
 productManager.addProduct(
     "producto prueba 3",
     "esto es un producto prueba",
-    500,
+    300,
     "sin imagen1",
-    "abc123",
-    25
+    "abc12333555353",
+    2242
+);
+
+productManager.addProduct(
+    "producto prueba 4",
+    "esto es un producto prueba",
+    400,
+    "sin imagen4",
+    "abc123979779",
+    99
+);
+
+productManager.addProduct(
+    "producto prueba 5",
+    "esto es un producto prueba",
+    500,
+    "sin imagen5",
+    "abc1239988",
+    334
 );
 
 const product = productManager.getProducts();
@@ -141,46 +161,13 @@ const productoModificado = {
     description: "Nueva descripción modificada",
     price: 4000,
     thumbnail: "nueva-imagen.jpg",
-    code: "abc123",
+    code: "abc12356789",
     stock: 30
 };
 
 productManager.updateProduct(2, productoModificado);
 console.log(productoModificado);
 
-productManager.deleteProduct(1);
-
-productManager.deleteProduct(2);
-
 productManager.deleteProduct(4);
 
-console.log(product);
-
-productManager.addProduct(
-    "producto prueba 3",
-    "esto es un producto prueba",
-    500,
-    "sin imagen1",
-    "abc1235",
-    25
-);
-
-productManager.addProduct(
-    "producto prueba 7",
-    "esto es un producto prueba",
-    500,
-    "sin imagen1",
-    "abc1235",
-    25
-);
-
-productManager.addProduct(
-    "producto prueba 8",
-    "esto es un producto prueba",
-    500,
-    "sin imagen1",
-    "dfg654444544544",
-    25
-);
-
-console.log(productList);
+productManager.deleteProduct(8);
