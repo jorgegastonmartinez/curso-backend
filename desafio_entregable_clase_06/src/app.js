@@ -1,11 +1,8 @@
-console.log("holisssss");
-
 const express = require("express"); 
 const PORT = 8080;
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 const ProductManager = require("../../desafio_entregable_clase_04/productos.json")
-// console.log(ProductManager);
 
 app.get("/products", async (req, res) => {
     try {
