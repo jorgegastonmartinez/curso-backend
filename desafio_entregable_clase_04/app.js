@@ -145,6 +145,78 @@ productManager.addProduct(
     334
 );
 
+productManager.addProduct(
+    "producto prueba 6",
+    "esto es un producto prueba",
+    600,
+    "sin imagen6",
+    "abc12399886",
+    3346
+);
+
+productManager.addProduct(
+    "producto prueba 7",
+    "esto es un producto prueba",
+    5007,
+    "sin imagen7",
+    "abc12399887",
+    3347
+);
+
+productManager.addProduct(
+    "producto prueba 8",
+    "esto es un producto prueba",
+    5008,
+    "sin imagen8",
+    "abc12399888",
+    3348
+);
+
+productManager.addProduct(
+    "producto prueba 9",
+    "esto es un producto prueba",
+    5009,
+    "sin imagen9",
+    "abc12399889",
+    3349
+);
+
+productManager.addProduct(
+    "producto prueba 10",
+    "esto es un producto prueba",
+    5001,
+    "sin imagen10",
+    "abc123998810",
+    334
+);
+
+productManager.addProduct(
+    "producto prueba 11",
+    "esto es un producto prueba",
+    50011,
+    "sin imagen5",
+    "abc1239988",
+    33411
+);
+
+productManager.addProduct(
+    "producto prueba 12",
+    "esto es un producto prueba",
+    50012,
+    "sin imagen5",
+    "abc1274574712",
+    336612
+);
+
+productManager.addProduct(
+    "producto prueba 13",
+    "esto es un producto prueba",
+    50013,
+    "sin imagen13",
+    "abc123452135",
+    33513
+);
+
 const product = productManager.getProducts();
 console.log(product);
 
