@@ -217,6 +217,24 @@ productManager.addProduct(
     33513
 );
 
+productManager.addProduct(
+    "producto prueba 14",
+    "esto es un producto prueba",
+    50014,
+    "sin imagen14",
+    "abc12345213514",
+    33514
+);
+
+productManager.addProduct(
+    "producto prueba 15",
+    "esto es un producto prueba",
+    50015,
+    "sin imagen15",
+    "abc123452135",
+    33515
+);
+
 const product = productManager.getProducts();
 console.log(product);
 
