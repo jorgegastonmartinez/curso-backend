@@ -94,6 +94,8 @@ class ProductManager {
     }
 }
 
+module.exports = ProductManager;
+
 // TESTING
 const productManager = new ProductManager("desafio_entregable_clase_04/productos.json");
 

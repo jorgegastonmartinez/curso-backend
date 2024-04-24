@@ -90,6 +90,33 @@
     "stock": 33514
   },
   {
+    "id": 12,
+    "title": "producto prueba 2",
+    "description": "esto es un producto prueba",
+    "price": 200,
+    "thumbnail": "sin imagen1",
+    "code": "dfg654",
+    "stock": 25
+  },
+  {
+    "id": 13,
+    "title": "producto prueba 4",
+    "description": "esto es un producto prueba",
+    "price": 400,
+    "thumbnail": "sin imagen4",
+    "code": "abc123979779",
+    "stock": 99
+  },
+  {
+    "id": 14,
+    "title": "producto prueba 8",
+    "description": "esto es un producto prueba",
+    "price": 5008,
+    "thumbnail": "sin imagen8",
+    "code": "abc12399888",
+    "stock": 3348
+  },
+  {
     "id": 2,
     "title": "Nuevo título modificaado",
     "description": "Nueva descripción modificada",
