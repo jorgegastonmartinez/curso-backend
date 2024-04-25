@@ -6,7 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-     <script src="/socket.io/socket.io.js"></script>
-     <script src="/js/index.js"></script>
+    <h1>Productos</h1>
+    <ul>
+        {{#each products}}
+        <li>{{this.title}} - $ {{this.price}} </li>
+        {{/each}}
+    </ul>
 </body>
 </html>
