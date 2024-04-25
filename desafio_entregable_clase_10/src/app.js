@@ -21,6 +21,12 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
 
-socketServer.on("connection", socket => {
+socketServer.on("connection", (socket) => {
     console.log("Nuevo cliente");
+
+    socket.on("mensajeDelCliente", (data) => {
+        console.log("Mensaje del cliente:", data);
+    });
+
+    socket.emit("mensajeAlCliente", {mensaje: "Hola desde el servidor!!"})
 })

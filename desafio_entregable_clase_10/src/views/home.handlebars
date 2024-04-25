@@ -6,11 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <input type="text">
-        <button>btn</button>
-    </div>
-     <script src="/socket.io/socket.io.js"></script>
-     <script src="../public/js/index.js"></script>
+    <h1>Productos</h1>
+    
+    <ul>
+        {{#each products}}
+        <li>{{this.title}} - $ {{this.price}} </li>
+        {{/each}}
+    </ul>
 </body>
 </html>

@@ -117,13 +117,69 @@ router.delete("/api/products/:pid", async (req, res) => {
     }
 })
 
+router.get("/", (req, res) => {
+    res.render("index", {})
+})
+
 router.get("/home", async (req, res) => {
     try {
         const products = await productManager.getProducts();
-        res.render("index", { products });
+        res.render("home", { products });
     } catch (error) {
         console.error("Error al obtener los productos", error);
         res.status(500).json({error: "Error al obtener los productos"})
+    }
+})
+
+router.get("/realtimeproducts", async (req, res) => {
+    try {
+        const products = await productManager.getProducts();
+        res.render("realtimeproducts", { products });
+    } catch (error) {
+        console.error("Error al obtener los productos");
+        res.status(500).json({error: "Error al obtener los productos"})
+    }
+})
+
+// sockets emit?????'
+router.post("/realtimeproducts", async (req, res) => {
+    try {
+        const {
+          title,
+          description,
+          code,
+          price,
+          status,
+          stock,
+          category,
+          thumbnail,
+        } = req.body;
+        const codeExists = productManager.getProducts().find(product => product.code === code);
+        if (codeExists) {
+            return res
+              .status(400)
+              .json({
+                error:
+                  "El campo code no se puede repetir, vuelva a intentar con otro código identificador",
+              });
+        }
+        await productManager.addProduct(
+          title,
+          description,
+          code,
+          price,
+          status,
+          stock,
+          category,
+          thumbnail
+        );
+        await productManager.saveProducts();
+        res.json({message: "Producto agregado correctamente"});
+
+        socket.emit("nuevoProducto", product)
+    } catch (error) {
+        console.error("Error al cargar el producto", error);
+        res.status(500).json({error: "Ocurrió un error al cargar el producto"})
     }
 })
 
