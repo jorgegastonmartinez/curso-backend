@@ -1,16 +1,14 @@
 const socket = io();
+const listProducts = document.getElementById('listProducts');
 
-socket.on("connection", () => {
-  console.log("Conectado al servidor Websockets!");
+socket.on('productos', productos => {
+  
+  listProducts.innerHTML = "";
+  productos.forEach(producto => {
+    const product = document.createElement("h4");
 
-  socket.on("productos", (productos) => {
-    const listaProductos = document.getElementById("realTimeProducts");
-    listaProductos.innerHTML = "";
+    product.innerHTML = `Producto: ${producto.title} - Precio $${producto.price}`
 
-    productos.forEach((producto) => {
-      const li = document.createElement("li");
-      li.textContent = `${producto.title} - ${producto.price}`;
-      listaProductos.appendChild(li);
-    });
+    listProducts.appendChild(product)
   });
-});
+})

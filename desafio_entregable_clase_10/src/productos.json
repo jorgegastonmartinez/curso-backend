@@ -23,22 +23,52 @@
   },
   {
     "id": 3,
-    "title": "newProduct",
-    "description": "Nuevo producto",
-    "code": "123433r33r3455efeef6",
-    "price": 160088,
+    "title": "TORTILLA DE PAPAS",
+    "description": "Nuevo producto5",
+    "code": "127f944633",
+    "price": 3200,
     "status": true,
     "stock": 140,
-    "category": "Ensaladas"
+    "category": "almuerzo"
   },
   {
     "id": 4,
-    "title": "newProduct2",
-    "description": "Nuevo producto",
-    "code": "123433r33r345522222efeef6",
-    "price": 160088,
+    "title": "CHURROS CON CHOCOLATE",
+    "description": "Nuevo producto5",
+    "code": "127333",
+    "price": 3200,
     "status": true,
     "stock": 140,
-    "category": "Ensaladas"
+    "category": "churreria"
+  },
+  {
+    "id": 5,
+    "title": "BOCATA DE POLLO",
+    "description": "Nuevo producto5",
+    "code": "1272222333",
+    "price": 3500,
+    "status": true,
+    "stock": 140,
+    "category": "churreria"
+  },
+  {
+    "id": 6,
+    "title": "BOCATA DE ATUN",
+    "description": "Nuevo producto5",
+    "code": "12722G333",
+    "price": 3800,
+    "status": true,
+    "stock": 140,
+    "category": "churreria"
+  },
+  {
+    "id": 7,
+    "title": "BOCATA VEGETARIANO",
+    "description": "Nuevo producto5",
+    "code": "12722G35533",
+    "price": 3100,
+    "status": true,
+    "stock": 140,
+    "category": "churreria"
   }
 ]

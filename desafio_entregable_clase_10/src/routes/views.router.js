@@ -125,15 +125,12 @@ router.get("/home", async (req, res) => {
     try {
         const products = await productManager.getProducts();
         res.render("home", { products });
+
     } catch (error) {
         console.error("Error al obtener los productos", error);
         res.status(500).json({error: "Error al obtener los productos"})
     }
 })
-
-router.get('/realtimeproducts', (req, res) => {
-    res.render("realTimeProducts", {});
-});
 
 router.post("/realtimeproducts", async (req, res) => {
     try {
@@ -168,14 +165,15 @@ router.post("/realtimeproducts", async (req, res) => {
         );
         await productManager.saveProducts();
 
-        const productosActualizados = productManager.getProducts();
-        io.emit('productos', productosActualizados);
-
         res.json({message: "Producto agregado correctamente"});
     } catch (error) {
         console.error("Error al cargar el producto", error);
         res.status(500).json({error: "Ocurrió un error al cargar el producto"})
     }
 })
+
+router.get('/realtimeproducts', (req, res) => {
+    res.render("realTimeProducts", {});
+});
 
 export default router;

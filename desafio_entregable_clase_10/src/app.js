@@ -3,7 +3,9 @@ import handlebars from "express-handlebars";
 import viewsRouter from "./routes/views.router.js";
 import { Server } from "socket.io";
 import __dirname from "./utils.js";
+import { ProductManager } from "../productManager.js";
 
+const productManager = new ProductManager("desafio_entregable_clase_10/src/productos.json");
 const app = express();
 const PORT = 8080;
 const httpServer = app.listen(PORT, () => {
@@ -20,16 +22,10 @@ app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
-let products = [];
-
-io.on("connection", socket => {
+io.on("connection", async socket => {
     console.log("Nuevo cliente conectado");
 
-    socket.emit("listadoProductos", products);
+    const products = await productManager.getProducts();
 
-    socket.on("productos", producto => {
-        products.push(producto);
-        io.emit("listadoProductos", products);
-    });
-
-});
+    socket.emit("productos", products); 
+})
