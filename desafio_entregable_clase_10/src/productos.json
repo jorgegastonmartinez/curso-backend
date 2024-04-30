@@ -30,5 +30,15 @@
     "status": true,
     "stock": 140,
     "category": "Ensaladas"
+  },
+  {
+    "id": 4,
+    "title": "newProduct2",
+    "description": "Nuevo producto",
+    "code": "123433r33r345522222efeef6",
+    "price": 160088,
+    "status": true,
+    "stock": 140,
+    "category": "Ensaladas"
   }
 ]

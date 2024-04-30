@@ -118,7 +118,7 @@ router.delete("/api/products/:pid", async (req, res) => {
 })
 
 router.get("/", (req, res) => {
-    res.render("index", {})
+    res.render("home", {})
 })
 
 router.get("/home", async (req, res) => {
@@ -131,17 +131,10 @@ router.get("/home", async (req, res) => {
     }
 })
 
-router.get("/realtimeproducts", async (req, res) => {
-    try {
-        const products = await productManager.getProducts();
-        res.render("realtimeproducts", { products });
-    } catch (error) {
-        console.error("Error al obtener los productos");
-        res.status(500).json({error: "Error al obtener los productos"})
-    }
-})
+router.get('/realtimeproducts', (req, res) => {
+    res.render("realTimeProducts", {});
+});
 
-// sockets emit?????'
 router.post("/realtimeproducts", async (req, res) => {
     try {
         const {
@@ -174,9 +167,11 @@ router.post("/realtimeproducts", async (req, res) => {
           thumbnail
         );
         await productManager.saveProducts();
-        res.json({message: "Producto agregado correctamente"});
 
-        socket.emit("nuevoProducto", product)
+        const productosActualizados = productManager.getProducts();
+        io.emit('productos', productosActualizados);
+
+        res.json({message: "Producto agregado correctamente"});
     } catch (error) {
         console.error("Error al cargar el producto", error);
         res.status(500).json({error: "Ocurrió un error al cargar el producto"})

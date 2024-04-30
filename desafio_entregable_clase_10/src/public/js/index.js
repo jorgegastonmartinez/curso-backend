@@ -1,11 +1,16 @@
 const socket = io();
 
 socket.on("connection", () => {
-    console.log("Conectado al servidor Websockets!");
-});
+  console.log("Conectado al servidor Websockets!");
 
-socket.on("mensajeAlCliente", (data) => {
-    console.log("Mensaje del servidor:", data);
-});
+  socket.on("productos", (productos) => {
+    const listaProductos = document.getElementById("realTimeProducts");
+    listaProductos.innerHTML = "";
 
-socket.emit("mensajeDelCliente", {mensaje: "Hola desde el cliente"})
+    productos.forEach((producto) => {
+      const li = document.createElement("li");
+      li.textContent = `${producto.title} - ${producto.price}`;
+      listaProductos.appendChild(li);
+    });
+  });
+});
