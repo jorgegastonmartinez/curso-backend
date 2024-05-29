@@ -1,0 +1,14 @@
+{{!-- 
+aca voy a mostrar la informacion del usuario
+y ademas con un button voy a cerrar la session
+Enlaso esa ruta del endpoint donde voy a hacer el destroy
+ --}}
+
+<h2>Perfil del usuario</h2>
+<p>Nombre: {{user.first_name}} </p>
+<p>Apellido: {{user.last_name}} </p>
+<p>Email: {{user.email}} </p>
+<p>Edad: {{user.age}}</p>
+<form action="/api/sessions/logout" method="POST">
+    <button type="submit">Cerrar sesión</button>
+</form>

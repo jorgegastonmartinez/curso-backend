@@ -1,0 +1,16 @@
+{{!-- en el action del form va la url con el metodo POST
+aqui hace referencia el router.post("/login") del sessions.js
+es un metodo post porque voy a enviar a ese endpoint la informacion del formulario
+por eso busco la ruta donde lo voy a enlasar en este caso "/api/sessions/login"
+ --}}
+
+
+<h2>Iniciar sesión</h2>
+<form action="/api/sessions/login" method="POST">
+    <label for="email">Email</label>
+    <input type="email" name="email" required>
+    <label for="password">Contraseña</label>
+    <input type="password" name="password" required>
+    <button type="submit">Ingresar</button>
+</form>
+<a href="/register">Registrarse</a>
