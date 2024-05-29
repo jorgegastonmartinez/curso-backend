@@ -4,12 +4,15 @@ import bodyParser from 'body-parser';
 import { engine } from 'express-handlebars';
 import mongoose from './config/database.js';
 import MongoStore from 'connect-mongo';
-import sessionsRouter from './routes/api/sessions.js';
-import viewsRouter from './routes/views.js';
 import __dirname from './utils.js';
 
-const app = express();
+import sessionsRouter from './routes/api/sessions.js';
+import viewsRouter from './routes/views.router.js';
+import cartsRouter from "./routes/carts.router.js";
+import productsRouter from "./routes/products.router.js";
 
+const app = express();
+const PORT = 8080;
 app.engine('handlebars', engine({
     extname: '.handlebars',
     defaultLayout: 'main',
@@ -24,14 +27,14 @@ app.use(session({
     secret: 'secretkey',
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: "mongodb+srv://Mongojoje:Mongojoje@cluster0.z5uj2rj.mongodb.net/ecommerse?retryWrites=true&w=majority&appName=Cluster0" }),
+    store: MongoStore.create({ mongoUrl: "mongodb+srv://Mongojoje:Mongojoje@cluster0.z5uj2rj.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0" }),
     cookie: { maxAge: 180 * 60 * 1000 },
 }));
 
 app.use('/api/sessions', sessionsRouter);
 app.use('/', viewsRouter);
-
-const PORT = 8080;
+app.use("/api", cartsRouter);
+app.use("/api", productsRouter);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
