@@ -12,22 +12,32 @@ Jorge Martinez.
 ## Comandos
 
 ```
-git clone https://github.com/jorgegastonmartinez/backend.git
+git clone https://github.com/jorgegastonmartinez/curso-backend
 npm start
 ```
 
 ## Instrucciones de uso
 
-Descargue el proyecto, desde GitHub, con el comando git clone. Dentro del package.json modifique el  "start": "node --watch desafio_entregable_clase_10/src/app.js". 
+Descargue el proyecto, desde GitHub, con el comando git clone. Dentro del package.json modifique el  "start": "node --watch desafio_entregable_clase_19/src/app.js". 
 Corra la app con el comando npm start.
 
 ## Imagenes del proyecto
 
-mustra de http://localhost:8080/home
-![](./desafio_entregable_clase_10/src/public/img/img-1.jpg)
+Vista de registro de usuario
 
-muestra de http://localhost:8080/realtimeproducts
-![](./desafio_entregable_clase_10/src/public/img/img-2.jpg)
+![](./desafio_entregable_clase_19/src/public/img/Captura%20de%20pantalla%202024-05-29%20a%20la(s)%208.37.09 p. m..png)
+
+Vista de Base de Datos en Mongo
+
+![](./desafio_entregable_clase_19/src/public/img/Captura%20de%20pantalla%202024-05-29%20a%20la(s)%208.38.11 p. m..png)
+
+Vista de Iniciar sesion
+
+![](./desafio_entregable_clase_19/src/public/img/Captura%20de%20pantalla%202024-05-29%20a%20la(s)%208.39.36 p. m..png)
+
+Vista Rol "admin"
+
+![](./desafio_entregable_clase_19/src/public/img/Captura%20de%20pantalla%202024-05-29%20a%20la(s)%208.40.01 p. m..png)
 
 
 ## Contacto
