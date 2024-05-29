@@ -8,7 +8,7 @@ import cartModel from "../models/cart.model.js";
 const router = Router();
 
 router.get("/", async (req, res) => {
-    res.render("index", {})
+    res.render("login", {})
 });
 
 router.get("/products", async (req, res) => {

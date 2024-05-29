@@ -51,7 +51,7 @@ router.post("/login", async (req, res) => {
         // si son correctos los datos ingresados
         // voy a rederigir al usuario a la pantalla de profile
         console.log(req.session.user);
-        res.redirect("/profile");
+        res.redirect("/products");
     } catch (error) {
         res.status(500).send("Error al iniciar la sessión")
     }
