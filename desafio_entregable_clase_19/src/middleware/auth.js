@@ -1,9 +1,3 @@
-// aca esta el middleware de auth
-// como la consigna da la especificacion de que hacer en 2 casos
-// 1 si esta autenticado que me mande al perfil 
-// 2 si no esta autenticado que me mande al login
-
-// si esta autenticado pasa
 export const isAuthenticated = (req, res, next) => {
     if (req.session.user) {
         return next();
@@ -19,3 +13,10 @@ export const isNotAuthenticated = (req, res, next) => {
         res.redirect("/products")
     }
 };
+
+export const isAdmin = (req, res, next) => {
+    if (req.session.user && req.session.user.role === 'admin') {
+      return next();
+    }
+    res.status(403).send('Acceso denegado');
+  };

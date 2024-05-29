@@ -1,7 +1,3 @@
-// aqui esta el Schema del usuario
-// al ser "unique: true", dice que tiene que ser unico ese email
-// en password podria ir al bcript 
-
 import mongoose from "mongoose";
 
 const userCollection = "Users";
@@ -12,6 +8,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, unique: true },
   age: Number,
   password: String,
+  role: { type: String, default: 'usuario' }
 });
 
 const firstCollection = mongoose.model(userCollection, userSchema);
