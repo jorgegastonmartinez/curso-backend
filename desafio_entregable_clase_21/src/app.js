@@ -5,6 +5,8 @@ import { engine } from 'express-handlebars';
 import mongoose from './config/database.js';
 import MongoStore from 'connect-mongo';
 import __dirname from './utils.js';
+import passport from 'passport';
+import initializePassport from './config/passport.config.js';
 
 import sessionsRouter from './routes/api/sessions.js';
 import viewsRouter from './routes/views.router.js';
@@ -13,6 +15,7 @@ import productsRouter from "./routes/products.router.js";
 
 const app = express();
 const PORT = 8080;
+
 app.engine('handlebars', engine({
     extname: '.handlebars',
     defaultLayout: 'main',
@@ -30,6 +33,10 @@ app.use(session({
     store: MongoStore.create({ mongoUrl: "mongodb+srv://Mongojoje:Mongojoje@cluster0.z5uj2rj.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0" }),
     cookie: { maxAge: 180 * 60 * 1000 },
 }));
+
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/api/sessions', sessionsRouter);
 app.use('/', viewsRouter);
