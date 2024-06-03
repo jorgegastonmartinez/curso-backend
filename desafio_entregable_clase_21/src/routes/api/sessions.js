@@ -6,8 +6,7 @@ import { createHash, isValidPassword } from "../../utils.js";
 const router = Router();
 
 router.post("/register", passport.authenticate("register", {failureRedirect: "failregister"}), async (req, res) => {
-   
-    res.redirect("/login");
+   res.redirect("/login");
   });
 
 router.get("/failregister", async (req, res) => {
@@ -16,7 +15,6 @@ router.get("/failregister", async (req, res) => {
 })
 
 router.post("/login", passport.authenticate("login", {failureRedirect: "faillogin"}), async (req, res) => {
-
     if (!req.user) {
       res.status(400).send({ status: "Error", error: "Campos incompletos" });
       return;
@@ -47,5 +45,13 @@ router.post("/logout", (req, res) => {
         res.redirect("/login")
     });
 });
+
+router.get("/github", passport.authenticate("github", {scope: ["user.email"]}), async (req, res) => {
+})
+
+router.get("/githubcallback", passport.authenticate("github", {failureRedirect: "/login"}), async (req, res) => {
+  req.session.user = req.user;
+  res.redirect("/products")
+})
 
 export default router;

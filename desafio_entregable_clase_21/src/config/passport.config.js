@@ -3,6 +3,8 @@ import local from "passport-local";
 import userService from "../models/user.model.js";
 import { createHash, isValidPassword } from "../utils.js";
 
+import GitHubStrategy from "passport-github2";
+
 const localStrategy = local.Strategy
 
 const initializePassport = () => {
@@ -22,32 +24,24 @@ const initializePassport = () => {
                 if (email === 'adminCoder@coder.com' && password === 'adminCod3r123') {
                     role = 'admin';
                 }
-            const newUser = new userService( {
-                first_name,
-                last_name, 
-                email, 
-                age,
-                password: createHash(password),
-                role: role
-            })
-            await newUser.save();
-            return done(null, newUser)
-        } catch (error) {
-            return done("Error al obtener el usuario" + error)
+                const newUser = new userService( {
+                    first_name,
+                    last_name, 
+                    email, 
+                    age,
+                    password: createHash(password),
+                    role: role
+                })
+                await newUser.save();
+                return done(null, newUser)
+            } catch (error) {
+                return done("Error al obtener el usuario" + error)
+            }
         }
-    }
-))
+    ))
 
-passport.serializeUser((user, done) => {
-    done(null, user._id)
-})
 
-passport.deserializeUser(async (id, done) => {
-    let user = await userService.findById(id)
-    done(null, user)
-})
-
-passport.use("login", new localStrategy({usernameField:"email"}, async (username, password, done) => {
+    passport.use("login", new localStrategy({usernameField:"email"}, async(username, password, done) => {
 
     try {
         const user = await userService.findOne({ email: username });
@@ -63,9 +57,50 @@ passport.use("login", new localStrategy({usernameField:"email"}, async (username
             }
             return done(null, user)
         } catch (error) {
-            return (done, error)
+            return done (error)
         }
     })
-)}
+)
+
+    passport.use("github", new GitHubStrategy({
+        clientID: "Iv23liuxmps1yMkAp1QB",
+        clientSecret: "86aecc720aca247aba0f690c0b8ae9662fd509c5", 
+        callbackURL: "http://localhost:8080/api/sessions/githubcallback"
+
+    }, async(accessToken, refreshToken, profile, done) => {
+        try {
+            console.log(profile)
+            let user = await userService.findOne({email: profile._json.email})
+
+            if (!user) {
+                let newUser = {
+                    first_name: profile._json.name,
+                    last_name: "",
+                    age: "",
+                    email: profile._json.email,
+                    password: "",
+                    role: "User"
+                }
+                let result = await userService.create(newUser)
+                done(null, result)
+            } else {
+                done(null, user)
+            }
+        } catch (error) {
+            return done(error)
+        }
+    }
+))
+
+    passport.serializeUser((user, done) => {
+        done(null, user._id)
+    })
+
+    passport.deserializeUser(async (id, done) => {
+        let user = await userService.findById(id)
+
+        done(null, user)
+    })
+}
 
 export default initializePassport;
