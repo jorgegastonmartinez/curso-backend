@@ -5,27 +5,15 @@ import { createHash, isValidPassword } from "../../utils.js";
 
 const router = Router();
 
-// registrar usuario passport
-// debo utilizar el middleware
-// failureRedirect = si algo falla en el registro lo voy a redireccionar
 router.post("/register", passport.authenticate("register", {failureRedirect: "failregister"}), async (req, res) => {
-    // voy a enviar 
-  
+   
     res.redirect("/login");
   });
-  
-  // aca voy a captar el  failureRedirect, a traves de un get
-  // es decir le voy a dar la respuesta a la solicitud post si anda mal
-  router.get("/failregister", async (req, res) => {
+
+router.get("/failregister", async (req, res) => {
     console.log("Estrategia fallida")
     res.send({error: "Falló"})
-  })
-  
-
-
-
- // loguiar usuario
-//NUEVO VOY A AGREGAR isValidPassword al momento de loguearse
+})
 
 router.post("/login", passport.authenticate("login", {failureRedirect: "faillogin"}), async (req, res) => {
 
@@ -41,8 +29,6 @@ router.post("/login", passport.authenticate("login", {failureRedirect: "faillogi
       age: req.user.age,
       role: req.user.role
     };
-    // si son correctos los datos ingresados
-    // voy a rederigir al usuario a la pantalla de profile
     res.redirect("/products");
 
     } catch (error) {
@@ -50,12 +36,9 @@ router.post("/login", passport.authenticate("login", {failureRedirect: "faillogi
     }
 });
 
-// aca voy a captar el  failureRedirect, a traves de un get
-// es decir le voy a dar la respuesta a la solicitud post si anda mal
 router.get("/faillogin", (req, res) => {
   res.send({error: "Login fallido"})
 })
-
 
 router.post("/logout", (req, res) => {
   
