@@ -1,12 +1,13 @@
 ## Título del Proyecto
 
-desafio entregable clase 19
+Desafío entregable clase 21
 
 ## Curso
 
 Backend 53150
 
 ## Autor
+
 Jorge Martinez.
 
 ## Comandos
@@ -18,26 +19,18 @@ npm start
 
 ## Instrucciones de uso
 
-Descargue el proyecto, desde GitHub, con el comando git clone. Dentro del package.json modifique el  "start": "node --watch desafio_entregable_clase_19/src/app.js". 
+Descargue el proyecto, desde GitHub, con el comando git clone. Dentro del package.json modifique el  "start": "node --watch desafio_entregable_clase_21/src/app.js". 
 Corra la app con el comando npm start.
 
 ## Imagenes del proyecto
 
-Vista de registro de usuario
+Vista de autenticación con github
 
-![](./desafio_entregable_clase_19/src/public/img/Captura%20de%20pantalla%202024-05-29%20a%20la(s)%208.37.09 p. m..png)
+![](./desafio_entregable_clase_21/src/public/img/Captura%20de%20pantalla%202024-06-03%20a%20la(s)%208.26.39 p. m..png)
 
-Vista de Base de Datos en Mongo
+Vista de Hasheo de contraseña
 
-![](./desafio_entregable_clase_19/src/public/img/Captura%20de%20pantalla%202024-05-29%20a%20la(s)%208.38.11 p. m..png)
-
-Vista de Iniciar sesion
-
-![](./desafio_entregable_clase_19/src/public/img/Captura%20de%20pantalla%202024-05-29%20a%20la(s)%208.39.36 p. m..png)
-
-Vista Rol "admin"
-
-![](./desafio_entregable_clase_19/src/public/img/Captura%20de%20pantalla%202024-05-29%20a%20la(s)%208.40.01 p. m..png)
+![](./desafio_entregable_clase_21/src/public/img/Captura%20de%20pantalla%202024-06-03%20a%20la(s)%208.27.21 p. m..png)
 
 
 ## Contacto
