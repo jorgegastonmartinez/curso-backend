@@ -1,4 +1,5 @@
 import express from 'express';
+import dotenv from "dotenv";
 import session from 'express-session';
 import bodyParser from 'body-parser';
 import { engine } from 'express-handlebars';
@@ -13,8 +14,9 @@ import viewsRouter from './routes/views.router.js';
 import cartsRouter from "./routes/carts.router.js";
 import productsRouter from "./routes/products.router.js";
 
+dotenv.config();
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT;
 
 app.engine('handlebars', engine({
     extname: '.handlebars',
@@ -27,10 +29,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(session({
-    secret: 'secretkey',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: "mongodb+srv://Mongojoje:Mongojoje@cluster0.z5uj2rj.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0" }),
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
     cookie: { maxAge: 180 * 60 * 1000 },
 }));
 
