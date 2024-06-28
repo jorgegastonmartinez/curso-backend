@@ -20,7 +20,7 @@ npm start
 ## Instrucciones de uso
 
 Descargue el proyecto, desde GitHub, con el comando git clone. Dentro del package.json modifique el  "start": "node --watch desafio_entregable_clase_27/src/app.js".
-Dentro del archivo .env.example se encuentran todas las variables de entorno. 
+En archivo .env.example se encuentran todas las variables de entorno. 
 Corra la app con el comando npm start.
 
 ## Imagenes del proyecto
