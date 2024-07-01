@@ -13,6 +13,7 @@ import sessionsRouter from './routes/api/sessions.js';
 import viewsRouter from './routes/views.router.js';
 import cartsRouter from "./routes/carts.router.js";
 import productsRouter from "./routes/products.router.js";
+import "./config/passport.config.js"
 
 dotenv.config();
 const app = express();

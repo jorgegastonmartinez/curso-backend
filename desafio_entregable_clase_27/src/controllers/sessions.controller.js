@@ -1,33 +1,52 @@
 import passport from "passport";
 
-export const registerUser = passport.authenticate("register", { failureRedirect: "failregister" }, (req, res) => {
-  res.redirect("/login");
-});
+export const registerUser = (req, res, next) => {
+  passport.authenticate("register", { failureRedirect: "/failregister" }, (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.redirect("/failregister");
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.redirect("/login");
+    });
+  })(req, res, next);
+};
 
 export const failRegister = (req, res) => {
   console.log("Estrategia fallida");
   res.send({ error: "Falló" });
 };
 
-export const loginUser = passport.authenticate("login", { failureRedirect: "faillogin" }, async (req, res) => {
-  if (!req.user) {
-    res.status(400).send({ status: "Error", error: "Campos incompletos" });
-    return;
-  }
-  try {
-    req.session.user = {
-      _id: req.user._id,
-      first_name: req.user.first_name,
-      last_name: req.user.last_name,
-      email: req.user.email,
-      age: req.user.age,
-      role: req.user.role,
-    };
-    res.redirect("/products");
-  } catch (error) {
-    res.status(500).send("Error en el inicio de sesión");
-  }
-});
+export const loginUser = (req, res, next) => {
+  passport.authenticate("login", { failureRedirect: "/faillogin" }, (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(400).send({ status: "Error", error: "Error al iniciar sesión" });
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      req.session.user = {
+        _id: user._id,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        age: user.age,
+        role: user.role,
+      };
+      return res.redirect("/products");
+    });
+  })(req, res, next);
+};
+
 
 export const failLogin = (req, res) => {
   res.send({ error: "Login fallido" });
@@ -52,9 +71,7 @@ export const getCurrentUser = (req, res) => {
   }
 };
 
-export const githubAuth = passport.authenticate("github", { scope: ["user.email"] });
-
-export const githubCallback = passport.authenticate("github", { failureRedirect: "/login" }, (req, res) => {
+export const githubCallback = (req, res) => {
   req.session.user = req.user;
   res.redirect("/products");
-});
+};
