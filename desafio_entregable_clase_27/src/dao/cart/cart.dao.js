@@ -10,7 +10,6 @@ export default class CartDAO {
             if (existingCart) {
                 return { message: "Ya existe un carrito para este usuario", cart: existingCart };
             }
-
             const newCart = new cartModel({
                 user: userId,
                 products: [],
@@ -43,21 +42,18 @@ export default class CartDAO {
             if (!mongoose.Types.ObjectId.isValid(cartId) || !mongoose.Types.ObjectId.isValid(productId)) {
                 throw new Error("ID de carrito o producto no válido");
             }
-
             let cart = await cartModel.findById(cartId).populate('products.product').populate('user');
 
             if (!cart) {
                 console.error("Carrito no encontrado");
                 return res.status(404).json({ error: "Carrito no encontrado" });
             }
-
             let product = await productsModel.findById(productId);
 
             if (!product) {
                 console.error("Producto no encontrado");
                 return res.status(404).json({ error: "Producto no encontrado" });
             }
-
             const existsProductIndex = cart.products.findIndex(item => item.product._id.toString() === productId);
 
             if (existsProductIndex !== -1) {
@@ -75,15 +71,14 @@ export default class CartDAO {
               (acc, item) => acc + item.quantity * item.product.price,
               0
             );
-
             await cart.save();
+
             return { message: 'Producto agregado al carrito', cart };
         } catch (error) {
             console.error("Error al agregar producto al carrito:", error);
             throw new Error("Ocurrió un error al agregar producto al carrito");
         }
     }
-
 
     async removeProductFromCart(cartId, productId) {
         try {
@@ -96,13 +91,11 @@ export default class CartDAO {
             if (!cart) {
                 throw new Error("Carrito no encontrado");
             }
-
             const productIndex = cart.products.findIndex(item => item.product._id.toString() === productId);
 
             if (productIndex === -1) {
                 throw new Error("Producto no encontrado en el carrito");
             }
-
             cart.products.splice(productIndex, 1);
 
             if (cart.products.length === 0) {
@@ -117,8 +110,8 @@ export default class CartDAO {
                     return acc + (item.quantity * (product ? product.price : 0));
                 }, 0);
             }
-
             await cart.save();
+
             return { message: "Producto eliminado del carrito", cart };
         } catch (error) {
             console.error("Error al eliminar producto del carrito:", error);
@@ -126,37 +119,25 @@ export default class CartDAO {
         }
     }
 
-
-
-
-
-
-
     async updateCart(cartId, products) {
         try {
             if (!mongoose.Types.ObjectId.isValid(cartId)) {
                 throw new Error("ID de carrito no válido");
             }
-
-            // Encuentra el carrito por ID
             let cart = await cartModel.findById(cartId).populate('products.product').populate('user');
 
             if (!cart) {
                 throw new Error("Carrito no encontrado");
             }
 
-            // Verifica que products sea un array
             if (!Array.isArray(products)) {
                 throw new Error("El cuerpo de la solicitud debe contener un arreglo de productos");
             }
 
-            // Obtiene los IDs de los productos del arreglo
             const productIds = products.map(item => item.product);
 
-            // Verifica que todos los productos existan en la base de datos
             const productsInDB = await productsModel.find({ _id: { $in: productIds } }).lean();
 
-            // Actualiza los productos del carrito y calcula el total
             cart.products = products.map(item => {
                 const product = productsInDB.find(p => p._id.toString() === item.product.toString());
                 return {
@@ -164,8 +145,7 @@ export default class CartDAO {
                     quantity: item.quantity,
                     price: product ? product.price : 0
                 };
-            });
-
+            })
             cart.total = cart.products.reduce((acc, item) => acc + item.quantity * item.price, 0);
 
             await cart.save();
@@ -177,15 +157,11 @@ export default class CartDAO {
         }
     }
 
-
-
-
     async updateProductQuantity(cartId, productId, quantity) {
         try {
             if (!mongoose.Types.ObjectId.isValid(cartId) || !mongoose.Types.ObjectId.isValid(productId)) {
                 throw new Error("ID de carrito o producto no válido");
             }
-
             let cart = await cartModel.findById(cartId).populate('products.product').populate('user');
 
             if (!cart) {
@@ -237,7 +213,3 @@ export default class CartDAO {
         }
     }
 }
-
-
-
-
