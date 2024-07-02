@@ -25,13 +25,13 @@ Corra la app con el comando npm start.
 
 ## Imagenes del proyecto
 
-Vista de autenticación con github
+Vista de capas de routing - controllers - dao
 
-![](./desafio_entregable_clase_21/src/public/img/Captura%20de%20pantalla%202024-06-03%20a%20la(s)%208.26.39 p. m..png)
+![](./desafio_entregable_clase_27/src/public/img/Captura%20de%20pantalla%202024-07-02%20a%20la(s)%203.59.50 p. m..png)
 
-Vista de Hasheo de contraseña
+Vista de archivo .env
 
-![](./desafio_entregable_clase_21/src/public/img/Captura%20de%20pantalla%202024-06-03%20a%20la(s)%208.27.21 p. m..png)
+![](./desafio_entregable_clase_27/src/public/img/Captura%20de%20pantalla%202024-07-02%20a%20la(s)%204.00.41 p. m..png)
 
 
 ## Contacto

@@ -2,13 +2,13 @@ import passport from "passport";
 import { Router } from "express";
 import { isAuthenticated } from "../../middleware/auth.js";
 import {
-  registerUser,
-  failRegister,
-  loginUser,
-  failLogin,
-  logoutUser,
-  getCurrentUser,
-  githubCallback,
+   registerUser,
+   failRegister,
+   loginUser,
+   failLogin,
+   logoutUser,
+   getCurrentUser,
+   githubCallback,
 } from "../../controllers/sessions.controller.js";
 
 const router = Router();
