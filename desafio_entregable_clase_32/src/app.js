@@ -19,7 +19,8 @@ import adminRouter from "./routes/admin.router.js";
 import messageRouter from "./routes/messages.router.js";
 import ticketRouter from "./routes/ticket.router.js"
 import { sessionLogger } from './middleware/auth.js';
-import userRouter from "./routes/user.router.js"
+import userRouter from "./routes/user.router.js";
+import mockingproducts from "./routes/mockingproducts.router.js";
 
 dotenv.config();
 const app = express();
@@ -56,7 +57,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(sessionLogger)
 
-
 app.use('/api/sessions', sessionsRouter);
 app.use('/', viewsRouter);
 app.use("/api", cartsRouter);
@@ -66,11 +66,13 @@ app.use("/api/messages", messageRouter);
 app.use("/api", ticketRouter);
 app.use("/api/user", userRouter)
 
+app.use("/", mockingproducts)
+
 socketServer.on("connection", (socket) => {
     console.log('Un usuario se ha conectado');
 
     socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);  // Emitir el mensaje a todos los clientes
+        io.emit('chat message', msg);
     });
 
     socket.on('disconnect', () => {

@@ -25,13 +25,17 @@ Corra la app con el comando npm start.
 
 ## Imagenes del proyecto
 
-Vista de capas de routing - controllers - dao
+Vista por capas de mocking products
 
-![](./desafio_entregable_clase_27/src/public/img/Captura%20de%20pantalla%202024-07-02%20a%20la(s)%203.59.50 p. m..png)
+![](./desafio_entregable_clase_32/src/public/img/Captura%20de%20pantalla%202024-07-19%20a%20la(s)%205.31.52 p. m..png)
 
-Vista de archivo .env
+Vista generar 100 products
 
-![](./desafio_entregable_clase_27/src/public/img/Captura%20de%20pantalla%202024-07-02%20a%20la(s)%204.00.41 p. m..png)
+![](./desafio_entregable_clase_32/src/public/img/Captura%20de%20pantalla%202024-07-19%20a%20la(s)%205.44.05 p. m..png)
+
+Vista obtener los 100 products
+
+![](./desafio_entregable_clase_32/src/public/img/Captura%20de%20pantalla%202024-07-19%20a%20la(s)%205.44.39 p. m..png)
 
 
 ## Contacto

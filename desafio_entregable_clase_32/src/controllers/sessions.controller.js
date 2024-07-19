@@ -2,20 +2,21 @@ import passport from "passport";
 import UserDTO from "../dto/user.dto.js";
 
 export const registerUser = (req, res, next) => {
-    passport.authenticate("register", { failureRedirect: "/failregister" }, (err, user, info) => {
-        if (err) {
-        return next(err);
-    }
+  passport.authenticate("register", { failureRedirect: "/failregister" }, (err, user, info) => {
+    if (err) {
+    return next(err);
+  }
     if (!user) {
       return res.redirect("/failregister");
     }
-    req.logIn(user, (err) => {
-        if (err) {
-        return next(err);
-        }
-        return res.redirect("/login");
-        });
-    })(req, res, next);
+  req.logIn(user, (err) => {
+    if (err) {
+      return next(err);
+    }
+    
+    return res.redirect("/login");
+    });
+  })(req, res, next);
 };
 
 export const failRegister = (req, res) => {
@@ -72,7 +73,7 @@ export const logoutUser = (req, res) => {
 };
 
 export const getCurrentUser = (req, res) => {
-  try {
+    try {
     if (!req.session || !req.session.user) {
       return res.redirect("/login");
     }
@@ -81,13 +82,13 @@ export const getCurrentUser = (req, res) => {
     console.log(userDTO); 
     
     res.render('current', { user: userDTO, isAdmin: req.session.user.role === 'admin' });
-  } catch (error) {
+    } catch (error) {
     console.error("Error al obtener el usuario actual:", error);
     return res.status(500).send({ error: "Error al obtener el usuario actual" });
-  }
+    }
 };
 
 export const githubCallback = (req, res) => {
-  req.session.user = req.user;
-  res.redirect("/products");
+    req.session.user = req.user;
+    res.redirect("/products");
 };
