@@ -1,6 +1,6 @@
 ## Título del Proyecto
 
-Desafío entregable clase 27
+Desafío entregable clase 32
 
 ## Curso
 
