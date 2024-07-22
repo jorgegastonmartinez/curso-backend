@@ -12,9 +12,9 @@ export default class User {
         }
     }
 
-    getUserById = async (id) => {
+    getUserById = async (uid) => {
         try {
-            let user = await usersModel.findOne({ _id: id })
+            let user = await usersModel.findById(uid)
             return user;
         } catch (error) {
             console.error("Error al obtener el usuario:", error);

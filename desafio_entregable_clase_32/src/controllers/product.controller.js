@@ -1,4 +1,7 @@
 import ProductDAO from '../dao/product/product.dao.js';
+import CustomError from '../services/error/CustomError.js';
+import EErrors from '../services/error/enums.js';
+import { generateProductErrorInfo } from '../services/error/info.js';
 
 const productDAO = new ProductDAO();
 
@@ -61,25 +64,40 @@ export const getProductById = async (req, res) => {
     }
 };
 
-export const createProduct = async (req, res) => {
+export const createProduct = async (req, res, next) => {
     let { title, description, code, price, stock, category } = req.body;
-
-    if (!title || !description || !code || !price || isNaN(stock) || !category) {
-        console.log("Debes completar todos los campos");
-        return res.status(400).send({ error: "Debes completar correctamente todos los campos" });
-    }
-    stock = Number(stock);
-    if (stock <= 0) {
-        console.log("El STOCK debe ser mayor que 0");
-        return res.status(400).send({ error: "El campo STOCK debe ser mayor que 0" });
-    }
-
+    console.log("Datos recibidos:", req.body);
     try {
+
+        if (!title || !description || !code || !price || isNaN(stock) || !category) {
+        const error = CustomError.createError({
+            name: "Creación de Producto",
+            cause: generateProductErrorInfo({ title, description, code, price, stock, category }),
+            message: "Debes completar correctamente todos los campos",
+            code: EErrors.INVALID_TYPES_ERROR
+        });
+        return next(error);
+    }
+        stock = Number(stock);
+        if (stock <= 0) {
+            const error = CustomError.createError({
+                name: "Creación de Producto",
+                cause: `Stock recibido: ${stock}`,
+                message: "El campo STOCK debe ser mayor que 0",
+                code: EErrors.INVALID_TYPES_ERROR
+            });
+            return next(error);
+        }
         const codeExists = await productDAO.existsByCode(code);
 
         if (codeExists) {
-            console.log("El campo code ya existe con ese número");
-            return res.status(400).send({ error: "El campo code ya existe con ese número" });
+            const error = CustomError.createError({
+                name: "Creación de Producto",
+                cause: `Código ya existente: ${code}`,
+                message: "El campo code ya existe con ese número",
+                code: EErrors.INVALID_PARAM
+            });
+            return next(error);
         }
 
         const result = await productDAO.createProduct({
@@ -91,13 +109,12 @@ export const createProduct = async (req, res) => {
             category,
         });
 
-        res.send({ result: "success", payload: result });
-
+        res.status(201).send({ result: "success", payload: result });
+    
     } catch (error) {
-        console.error("Error al crear el producto", error);
-        res.status(500).send({ error: "Error al crear el producto" });
+        next(error);
     }
-};
+}
 
 export const updateProduct = async (req, res) => {
     let { pid } = req.params;

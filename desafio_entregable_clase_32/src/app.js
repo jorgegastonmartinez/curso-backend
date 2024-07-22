@@ -10,6 +10,7 @@ import passport from 'passport';
 import initializePassport from './config/passport.config.js';
 import { Server } from "socket.io";
 
+import errorHandler from './middleware/errorHandler.js';
 import sessionsRouter from './routes/api/sessions.js';
 import viewsRouter from './routes/views.router.js';
 import cartsRouter from "./routes/carts.router.js";
@@ -55,7 +56,7 @@ app.use(session({
 initializePassport();
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(sessionLogger)
+app.use(sessionLogger);
 
 app.use('/api/sessions', sessionsRouter);
 app.use('/', viewsRouter);
@@ -67,6 +68,7 @@ app.use("/api", ticketRouter);
 app.use("/api/user", userRouter)
 
 app.use("/", mockingproducts)
+app.use(errorHandler)
 
 socketServer.on("connection", (socket) => {
     console.log('Un usuario se ha conectado');

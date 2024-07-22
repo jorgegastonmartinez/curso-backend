@@ -37,6 +37,9 @@ Vista obtener los 100 products
 
 ![](./desafio_entregable_clase_32/src/public/img/Captura%20de%20pantalla%202024-07-19%20a%20la(s)%205.44.39 p. m..png)
 
+Vista Custom Errors
+
+![](./desafio_entregable_clase_32/src/public/img/Captura%20de%20pantalla%202024-07-22%20a%20la(s)%203.49.45 p. m..png)
 
 ## Contacto
 

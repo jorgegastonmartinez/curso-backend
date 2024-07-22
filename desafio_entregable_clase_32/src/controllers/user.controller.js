@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import User from '../dao/user/user.dao.js'
 
 const usersService = new User()
@@ -8,12 +9,17 @@ export const getUsers = async (req, res) => {
 }
 
 export const getUserById = async (req, res) => {
+    const { uid } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(uid)) {
+        return res.status(400).send({ status: "error", message: "El usuario buscado, no existe" });
+    }
     try {
-        const { uid } = req.params;
         const user = await usersService.getUserById(uid);
         if (!user) {
-            return res.status(404).send({ status: "error", message: "User not found" });
+            return res.status(404).send({ status: "error", message: "Usuario no encontrado" });
         }
+
         res.send({ status: "success", result: user });
     } catch (error) {
         console.error("Error al obtener el usuario:", error);
