@@ -1,6 +1,6 @@
 ## Título del Proyecto
 
-Desafío entregable clase 32
+Desafío entregable clase 34
 
 ## Curso
 
@@ -19,27 +19,31 @@ npm start
 
 ## Instrucciones de uso
 
-Descargue el proyecto, desde GitHub, con el comando git clone. Dentro del package.json modifique el  "start": "node --watch desafio_entregable_clase_27/src/app.js".
+Descargue el proyecto, desde GitHub, con el comando git clone. Dentro del package.json modifique el  "start": "node --watch desafio_entregable_clase_34/src/app.js".
 En archivo .env.example se encuentran todas las variables de entorno. 
 Corra la app con el comando npm start.
 
 ## Imagenes del proyecto
 
-Vista por capas de mocking products
+Vista sistema de niveles.
 
-![](./desafio_entregable_clase_32/src/public/img/Captura%20de%20pantalla%202024-07-19%20a%20la(s)%205.31.52 p. m..png)
+![](./desafio_entregable_clase_34/src/public/img/Captura%20de%20pantalla%202024-07-29%20a%20la(s)%208.36.17 p. m..png)
 
-Vista generar 100 products
 
-![](./desafio_entregable_clase_32/src/public/img/Captura%20de%20pantalla%202024-07-19%20a%20la(s)%205.44.05 p. m..png)
+Vista de entorno de desarrollo y entorno de producción.
 
-Vista obtener los 100 products
+![](./desafio_entregable_clase_34/src/public/img/Captura%20de%20pantalla%202024-07-29%20a%20la(s)%208.36.37 p. m..png)
 
-![](./desafio_entregable_clase_32/src/public/img/Captura%20de%20pantalla%202024-07-19%20a%20la(s)%205.44.39 p. m..png)
 
-Vista Custom Errors
+Vista Endpoint loggerTest
 
-![](./desafio_entregable_clase_32/src/public/img/Captura%20de%20pantalla%202024-07-22%20a%20la(s)%203.49.45 p. m..png)
+![](./desafio_entregable_clase_34/src/public/img/Captura%20de%20pantalla%202024-07-29%20a%20la(s)%208.37.07 p. m..png)
+
+
+Scripts de prod y dev
+
+![](./desafio_entregable_clase_34/src/public/img/Captura%20de%20pantalla%202024-07-29%20a%20la(s)%208.42.24 p. m..png)
+
 
 ## Contacto
 
