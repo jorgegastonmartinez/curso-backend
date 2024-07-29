@@ -40,8 +40,8 @@ const prodLogger = winston.createLogger({
         winston.format.printf(({ timestamp, level, message }) => `${timestamp} ${level}: ${message}`)
     ),
     transports: [
-        new winston.transports.Console({ level: 'http' }),
-        new winston.transports.File({ filename: './errors.log', level: 'warn' })
+        new winston.transports.Console({ level: 'info' }),
+        new winston.transports.File({ filename: './errors.log', level: 'error' })
     ]
 });
 
