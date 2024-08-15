@@ -9,6 +9,8 @@ import __dirname from './utils.js';
 import passport from 'passport';
 import initializePassport from './config/passport.config.js';
 import { Server } from "socket.io";
+import swaggerJsDoc from 'swagger-jsdoc';
+import SwaggerUiExpress from 'swagger-ui-express';
 
 import sessionsRouter from './routes/api/sessions.js';
 import viewsRouter from './routes/views.router.js';
@@ -30,6 +32,23 @@ const httpServer = app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);
 })
 const socketServer = new Server(httpServer);
+
+//
+const swaggerOptions = {
+    definition: {
+        openapi: "3.0.1",
+        info: {
+            title: "Ecommerce API Documentation",
+            description: "Esta es la documentación de la API para un sistema de e-commerce, que permite a los usuarios ver productos, gestionar carritos de compras, realizar pedidos.",
+        },
+    },
+    apis: [`${__dirname}/docs/**/*.yaml`],
+};
+
+const specs = swaggerJsDoc(swaggerOptions);
+app.use('/apidocs', SwaggerUiExpress.serve, SwaggerUiExpress.setup(specs));
+
+//
 
 app.engine('handlebars', engine({
     extname: '.handlebars',
