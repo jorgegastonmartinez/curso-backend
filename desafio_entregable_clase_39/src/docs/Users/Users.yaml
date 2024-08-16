@@ -12,7 +12,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#components/schemas/User'
+                  $ref: '#/components/schemas/User'
         "500":
           description: Error interno del servidor, usualmente generado por una query defectuosa o un fallo en la conexión con la base de datos
     post:
@@ -24,14 +24,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#components/requestBodies/createUser'
+              $ref: '#/components/requestBodies/createUser'
       responses:
         "201":
           description: Usuario creado correctamente
           content:
             aplication/json:
               schema:
-                $ref: '#components/schemas/User'
+                $ref: '#/components/schemas/User'
         "400":
           description: Solicitud incorrecta. Verifica los datos
         "500":
@@ -54,7 +54,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#components/schemas/User'
+                $ref: '#/components/schemas/User'
         "500":
           description: Error interno del servidor
     put:
@@ -73,14 +73,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#components/requestBodies/updateUser'
+              $ref: '#/components/requestBodies/updateUser'
       responses: 
         "200":
           description: Usuario actualizado correctamente
           content:
             application/json:
               schema:
-                $ref: '#components/schemas/User'
+                $ref: '#/components/schemas/User'
 components:
   schemas:
     User:

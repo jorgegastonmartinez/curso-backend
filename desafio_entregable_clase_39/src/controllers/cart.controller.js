@@ -34,7 +34,8 @@ export const getCart = async (req, res) => {
         if (!mongoose.Types.ObjectId.isValid(cid)) {
             return res.status(400).json({ error: "ID de carrito no válido" });
         }
-        const { message, cart } = await cartService.getCartById(cid).populate('products.product').lean();
+        
+        const { message, cart } = await cartService.getCartById(cid);
         
         if (!cart) {
             return res.status(404).json({ error: "Carrito no encontrado" });

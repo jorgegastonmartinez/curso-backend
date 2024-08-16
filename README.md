@@ -25,10 +25,13 @@ Corra la app con el comando npm start.
 
 ## Imagenes del proyecto
 
-Vista sistema de niveles.
+Vista Documentación en la UI.
 
-![](./desafio_entregable_clase_34/src/public/img/Captura%20de%20pantalla%202024-07-29%20a%20la(s)%208.36.17 p. m..png)
+![](./desafio_entregable_clase_39/src/public/img/Captura%20de%20pantalla%202024-08-16%20a%20la(s)%204.50.28 p. m..png)
 
+Vista archivos .yaml de Carts, Products y Users.
+
+![](./desafio_entregable_clase_39/src/public/img/Captura%20de%20pantalla%202024-08-16%20a%20la(s)%204.51.10 p. m..png)
 
 
 ## Contacto
